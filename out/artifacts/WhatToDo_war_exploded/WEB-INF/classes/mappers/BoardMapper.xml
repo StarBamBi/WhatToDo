@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koreait.whattodo.board.BoardMapper">
+    <insert id="insBoard">
+        INSERT INTO freeboard
+            (icategory, title, ctnt, iuser)
+        VALUES
+            (${icategory}, #{title}, #{ctnt}, ${iuser})
+    </insert>
 
+    <select id="selBoardList" resultType="BoardVo">
+        SELECT *
+        FROM freeboard
+        WHERE isdel = 0
+        ORDER BY iboard DESC
+    </select>
+
+    <select id="selBoard" resultType="BoardVo">
+        SELECT *
+        FROM freeboard
+        WHERE isdel = 0
+          AND iboard = ${iboard}
+    </select>
+
+    <update id="addHits">
+        UPDATE freeboard
+        SET hits = hits + 1
+          , lastip = #{lastip}
+        WHERE iboard = ${iboard}
+    </update>
 </mapper>
