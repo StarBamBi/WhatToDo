@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koreait.whattodo.board.BoardMapper">
+    <insert id="insBoard">
+        INSERT INTO freeboard
+            (icategory, title, ctnt, iuser)
+        VALUES
+            (${icategory}, #{title}, #{ctnt}, ${iuser})
+    </insert>
 
+    <select id="selBoardList" resultType="BoardVo">
+        SELECT *
+        FROM freeboard
+        WHERE isdel = 0
+        ORDER BY iboard DESC
+    </select>
+
+    <select id="selBoard" resultType="BoardVo">
+        SELECT *
+        FROM freeboard
+        WHERE isdel = 0
+          AND iboard = ${iboard}
+    </select>
+
+    <update id="addHits">
+        UPDATE freeboard
+        SET hits = hits + 1
+          , lastip = #{lastip}
+        WHERE iboard = ${iboard}
+    </update>
+
+    <update id="updBoard">
+        UPDATE freeboard
+        <set>
+            <if test=" title != null and title != '' ">
+                title = #{title},
+            </if>
+            <if test=" ctnt != null and ctnt != '' ">
+                ctnt = #{ctnt},
+            </if>
+            <if test=" isdel == 1 ">
+                isdel = 1
+            </if>
+        </set>
+        WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
+    </update>
+
+    <select id="selPrevNext" resultType="BoardPrevNextVo">
+        <![CDATA[
+            SELECT
+            (SELECT iboard FROM freeboard
+            WHERE isdel = 0
+            AND iboard < ${iboard}
+            ORDER BY iboard
+            LIMIT 1) AS previboard,
+            (SELECT iboard FROM freeboard
+            WHERE isdel = 0
+            AND iboard > ${iboard}
+            ORDER BY iboard
+            LIMIT 1) AS nextiboard
+]]>
+    </select>
 </mapper>

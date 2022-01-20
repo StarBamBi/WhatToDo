@@ -1,0 +1,57 @@
+.container {
+    display: block;
+}
+
+.join_container > h1 {
+    padding: 10px 0 15px 0;
+}
+
+.join_container > form > div {
+    padding-bottom: 30px;
+}
+
+.join_title {
+    text-align: center;
+}
+
+.textBox {
+    border-radius: 4px;
+    border: solid 1px #dddddd;
+    padding: 10px 110px 10px 8px;
+}
+
+.textBox:focus {
+    outline: none;
+    border: solid 1px #dddddd;
+}
+
+.selBox {
+    border-radius: 4px;
+    padding: 10px 230px 10px 8px;
+    border: solid 1px #dddddd;
+}
+
+.selBox:focus {
+    border: solid 1px #dddddd;
+    outline: none;
+}
+
+.err_msg {
+    font-weight: normal;
+    color: red;
+}
+
+
+.submit_btn {
+    padding: 10px 60px;
+    background-color: #03c75a;;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+}
+
+.submit_btn:hover {
+    background-color: #008d62;
+}
+
+

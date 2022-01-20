@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.crawling.CrawlingMapper">
+    <!-- 게임메카 관련 -->
+    <insert id="insertRankMecaDb">
+        INSERT INTO meca_rankdb(rankNm, rankNum, company) VALUES
+        <foreach collection="list" open="(" close=")" separator="),(" item="rank">
+             #{rank.rankNm}, #{rank.rankNum}, #{rank.company}
+        </foreach>
+    </insert>
+
+    <delete id="delMecaRank">
+        DELETE FROM meca_rankdb
+    </delete>
+    
+    <select id="mecaRankList" resultType="MecaRankEntity">
+        SELECT rankNum, rankNm, company FROM meca_rankdb ORDER BY irank
+    </select>
+
+    <!-- 스팀 관련 -->
+    <insert id="insertRankSteamDb">
+        INSERT INTO steam_rankdb(rankNm, rankNum) VALUES
+        <foreach collection="list" open="(" close=")" separator="),(" item="rank">
+            #{rank.rankNm}, #{rank.rankNum}
+        </foreach>
+    </insert>
+
+    <delete id="delSteamRank">
+        DELETE FROM steam_rankdb
+    </delete>
+
+    <select id="steamRankList" resultType="SteamRankEntity">
+        SELECT rankNum, rankNm FROM steam_rankdb ORDER BY irank
+    </select>
+</mapper>

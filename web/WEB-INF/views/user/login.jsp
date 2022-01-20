@@ -16,5 +16,5 @@
 
 <div>
     <div><a>이메일 또는 비밀번호를 잊으셨나요?</a></div>
-    <div><a href="join.jsp">아직 계정이 없으신가요?</a></div>
+    <div><a href="/user/join">아직 계정이 없으신가요?</a></div>
 </div>

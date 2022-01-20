@@ -15,26 +15,36 @@
     padding-bottom: 1rem;
 }
 
+.login_container > div:last-child {
+    padding-left: 2rem;
+}
+
 .login_container > div > input.login_input{
     padding: 1rem 7rem 1rem 1rem;
     font-size: 15px;
-    border: 1px solid black;
+    border-radius: 4px;
+    border: solid 1px #dddddd;
 }
 
 .login_container > div > input:focus {
-    border: 1px solid black;
+    border: solid 1px #dddddd;
+    outline: none;
 }
 
 .login_btn {
     font-size: 15px;
     border: 1px solid black;
     padding:1rem 8rem;
-    background-color: #03c75a;;
+    background-color: #03c75a;
     color: white;
     font-weight: bold;
 }
 
 .login_btn:hover {
-    background-color: green;
+    background-color: #008d62;
     color: white;
 }
+
+a:link, a:visited, a:active { color: black; }
+
+a:hover { color: #C0C0C0 }

@@ -1,0 +1,21 @@
+#writeBtn {
+    padding:1rem 8rem;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: greenyellow;
+    border: none;
+    display: inline-block;
+}
+#writeBtn:hover {
+    cursor: pointer;
+}
+#writeBtnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.record:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+}
