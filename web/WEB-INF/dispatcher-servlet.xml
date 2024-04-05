@@ -2,13 +2,27 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:beans="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="com.koreait.whattodo"/>
 
     <mvc:annotation-driven />
     <mvc:resources mapping="/res/**" location="/res/" />
+    <mvc:resources mapping="/images/**" location="file:///D:/upload/images/" />
+
+
+    <mvc:interceptors>  <!-- 자동로그인 인터셉터 설정 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <mvc:mapping path="/board/**"/>
+            <bean class="com.koreait.whattodo.interceptor.AutoLoginInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor> <!--   비밀번호 찾기 인터셉터     -->
+            <mvc:mapping path="/user/forgot/pws"/>
+            <bean class="com.koreait.whattodo.interceptor.FindPwSInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />

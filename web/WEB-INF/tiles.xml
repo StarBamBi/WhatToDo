@@ -10,11 +10,34 @@
         <put-attribute name="title" value="뭐하Gee" />
     </definition>
 
-    <definition name="*/*" extends="tiles_template">
-        <put-attribute name="title" value="{2}" />
+<!--    <definition name="*/*" extends="tiles_template">-->
+<!--        <put-attribute name="title" value="{2}" />-->
+<!--        <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />-->
+<!--        <put-attribute name="addr1" value="{1}" />-->
+<!--        <put-attribute name="addr2" value="{1}/{2}" />-->
+<!--    </definition>-->
+
+    <definition name="basic.*.*" template="/WEB-INF/views/temp/basic_container.jsp">
         <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
-        <put-attribute name="addr1" value="{1}" />
-        <put-attribute name="addr2" value="{1}/{2}" />
     </definition>
 
+    <definition name="*/*" extends="tiles_template">
+        <put-attribute name="body" value="basic.{1}.{2}" />
+        <put-attribute name="title" value="{2}" />
+        <put-attribute name="addr1" value="{1}" />
+        <put-attribute name="addr2" value="{1}/{2}" />
+<!--        <put-attribute name="addr3" value="{1}/{2}" />-->
+    </definition>
+
+    <definition name="usertiles.*.*" template="/WEB-INF/views/temp/basic_container.jsp">
+        <put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp" />
+    </definition>
+
+    <definition name="user/*/*" extends="tiles_template">
+        <put-attribute name="body" value="usertiles.{1}.{2}" />
+        <put-attribute name="title" value="{2}" />
+        <put-attribute name="addr1" value="{1}" />
+        <put-attribute name="addr2" value="{1}/{2}" />
+<!--        <put-attribute name="addr3" value="user/{1}/{2}" />-->
+    </definition>
 </tiles-definitions>

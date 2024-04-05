@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koreait.whattodo.user.UserMapper">
-    <insert id="insUser">
-        INSERT INTO t_user (uid, upw, nm, gender, profileimg)
-        VALUES (#{uid}, #{upw}, #{nm}, ${gender}, #{profileimg})
+    <insert id="insUser"><!--  회원가입  -->
+        INSERT INTO whattodo_user (uid, upw, nm, gender, contact, postaddr, addrfirst, addrsecond, profileimg, level)
+        VALUES (#{uid}, #{upw}, #{nm}, ${gender}, ${contact}, ${postAddress}, #{addressFirst}, #{addressSecond},#{profileimg}, ${level})
     </insert>
 
-    <select id="selUser" resultType="UserEntity">
-        SELECT * FROM t_user
+    <insert id="insAutoLoginKey"><!--  자동로그인 키 생성  -->
+        INSERT INTO auto_login (auto_key, user_id, expiration_at)
+        VALUES (#{key}, #{uid}, DATE_ADD(NOW(), INTERVAL ${day} DAY))
+    </insert>
+
+    <select id="selUserWithAutoLogin" resultType="UserVo"><!--  자동로그인 키 확인  -->
+        SELECT iuser, uid, upw, nm, gender, profileimg, rdt, mdt
+        FROM whattodo_user
+                 LEFT JOIN auto_login
+                           ON uid = auto_login.user_id
+        WHERE auto_key = #{key}
+          AND expiration_at > NOW()
+          AND expiration_flag = FALSE
+    </select>
+
+    <update id="updLoginKeyRenewal"><!--  자동로그인 키 갱신  -->
+        UPDATE auto_login
+        SET expiration_at = DATE_ADD(NOW(), INTERVAL #{day} DAY)
+        WHERE auto_key = #{key}
+          AND expiration_at > NOW()
+          AND expiration_flag = FALSE
+            LIMIT 1;
+    </update>
+
+    <update id="delAutoLoginKey"><!--  자동로그인 키 만료  -->
+        UPDATE auto_login
+        SET expiration_flag = TRUE, expiration_at = NOW()
+        WHERE auto_key = #{key}
+          AND expiration_at > NOW()
+          AND expiration_flag = FALSE
+    </update>
+
+    <select id="selUser" resultType="UserVo"><!--  로그인  -->
+        SELECT * FROM whattodo_user
         WHERE uid = #{uid}
     </select>
+
+    <select id="forgotEmailSel" resultType="UserVo"><!--  아이디 찾기  -->
+        SELECT uid, DATE_FORMAT(rdt, '%Y.%m.%d') AS rdt FROM whattodo_user
+        WHERE nm = #{nm}
+          AND contact = ${contact};
+    </select>
+
+    <insert id="forgotPw"><!--  비밀번호찾기 쿠키값 저장  -->
+        INSERT INTO find_pw (cookie, iuser, expiration_at)
+        VALUES (#{cookie}, (SELECT iuser FROM whattodo_user WHERE uid = #{uid}), DATE_ADD(NOW(), INTERVAL ${expiration_at} DAY));
+    </insert>
+
+    <select id="selFindPwKey" resultType="int"><!--  비밀번호찾기 쿠키값으로 iuser 가져옴 -->
+        SELECT iuser FROM find_pw WHERE cookie = #{key};
+    </select>
+
+    <update id="delFindPwKey"><!--  사용다한 쿠키값 만료시키기  -->
+        UPDATE find_pw
+        SET expiration_at = NOW(), expiration_flag = TRUE
+        WHERE cookie = #{cookie}
+          AND iuser = ${iuser};
+    </update>
+
+    <update id="findPw"><!--  비밀번호 변경시키기  -->
+        UPDATE whattodo_user SET upw = #{newUpw} WHERE iuser = ${iuser}
+    </update>
 </mapper>

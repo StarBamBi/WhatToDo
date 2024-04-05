@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.board.like.LikeMapper">
+    <insert id="insBoardLike">
+        INSERT INTO freeboard_like (iboard, iuser)
+        VALUES (${iboard}, ${iuser})
+    </insert>
+
+    <select id="selBoardLike" resultType="BoardLikeEntity">
+        SELECT *
+        FROM freeboard_like
+        WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
+    </select>
+
+    <delete id="delBoardLike">
+        DELETE FROM freeboard_like
+        WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
+    </delete>
+
+    <select id="boardLikeCount" resultType="BoardLikeEntity">
+        SELECT COUNT(*) AS 'count' FROM freeboard_like
+        WHERE iboard = ${iboard}
+    </select>
+
+    <select id="selBoardLikeList" resultType="BoardLikeEntity">
+        SELECT a.title as nm, b.rdt, b.iboard
+        FROM freeboard a
+                 INNER JOIN freeboard_like b
+                            ON a.iuser = b.iuser
+                                AND a.iboard = b.iboard
+        ORDER BY rdt desc
+    </select>
+
+    <select id="selBoardLikeListPaging" resultType="BoardLikeEntity">
+        SELECT a.title as nm, b.rdt, b.iboard
+        FROM freeboard a
+                 INNER JOIN freeboard_like b
+                            ON a.iuser = b.iuser
+                                AND a.iboard = b.iboard
+        ORDER BY rdt desc LIMIT ${pageStart}, ${perPageNum}
+    </select>
+
+    <select id="selAllLikeList" resultType="BoardLikeEntity">
+        (SELECT a.title AS nm, b.rdt, a.iboard
+         FROM freeboard a
+                  INNER JOIN freeboard_like b
+                             ON a.iuser = b.iuser
+                                 AND a.iboard = b.iboard)
+        UNION ALL
+        SELECT gameNm AS nm, rdt, iboard FROM game_like
+        WHERE iuser = ${iuser}
+        UNION ALL
+        SELECT nm, rdt, iboard FROM fav_webtoon
+        WHERE iuser = ${iuser} ORDER BY rdt desc
+    </select>
+
+    <select id="selAllLikeListPaging" resultType="BoardLikeEntity">
+        (SELECT a.title AS nm, b.rdt, a.iboard
+         FROM freeboard a
+                  INNER JOIN freeboard_like b
+                             ON a.iuser = b.iuser
+                                 AND a.iboard = b.iboard)
+        UNION ALL
+        SELECT gameNm AS nm, rdt, iboard FROM game_like
+        WHERE iuser = ${iuser}
+        UNION ALL
+        SELECT nm, rdt, iboard FROM fav_webtoon
+        WHERE iuser = ${iuser} ORDER BY rdt desc LIMIT ${pageStart}, ${perPageNum}
+    </select>
+</mapper>

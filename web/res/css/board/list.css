@@ -1,0 +1,77 @@
+#writeBtn {
+    padding:1rem 5rem;
+    font-size: 20px;
+    font-weight: bold;
+    /*background-color: greenyellow;*/
+    border: none;
+    display: inline-block;
+}
+#writeBtn:hover {
+    cursor: pointer;
+}
+#writeBtnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.record:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+table { margin-top: 10px; text-align: center; width: 100%; border: none;}
+
+td, th { border : none; border-bottom: dimgrey}
+
+#paging { margin-top: 10px; display: flex; justify-content: right; width: auto}
+
+#pageIdx { display: flex; justify-content: center}
+
+.pageNum { font-size: large; padding: 7px 3px;}
+
+.pageNum:hover {cursor: pointer}
+
+#listTitle {text-align: center; margin-top: 20px}
+
+#lTitle { width: 60%;}
+
+.listContainer { width: 50%}
+
+div.container {align-items: center;}
+
+div.footer { position: absolute; bottom: 0}
+
+li .selected { background-color: #D3D3D3}
+
+.page-preNext { position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    margin: 15px;
+}
+
+.btn-light {
+    height: 50%;
+}
+
+.form-group .searchTxt {
+    flex-basis: 85%
+}
+
+.form-group #sel1 {
+    flex-basis: 15%;
+}

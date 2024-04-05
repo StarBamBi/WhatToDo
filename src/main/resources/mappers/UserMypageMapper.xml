@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.user.mypage.UserMypageMapper">
+
+    <select id="selBoardLike" resultType="BoardLikeEntity">
+        SELECT iboard, iuser, rdt
+        FROM freeboard_like
+        WHERE iboard = ${iboard}
+          AND iuser = ${iuser}
+    </select>
+
+    <select id="selUpw" resultType="UserVo">
+        SELECT * from whattodo_user WHERE iuser = ${iuser}
+    </select>
+
+    <update id="updProfileImg">
+        UPDATE whattodo_user SET profileimg = #{profileimg} WHERE iuser = ${iuser}
+    </update>
+
+    <update id="updUpw">
+        UPDATE whattodo_user SET upw = #{newUpw} WHERE iuser = ${iuser}
+    </update>
+</mapper>

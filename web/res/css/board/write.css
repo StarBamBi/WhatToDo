@@ -1,0 +1,39 @@
+.container {}
+
+#writeContainer{ display: flex;flex-direction: column; margin: 0; width: 60%;
+        }
+
+#writeFrm {}
+
+#writeElem1 { display: flex; margin-bottom: 10px;
+}
+#writeElem1 > input { width: 100%; border: 1px solid mediumaquamarine; font-size: large}
+
+#writeElem2 { display: flex; flex-direction: column;
+}
+
+#writeElem3 { display: flex; flex-direction: column; align-items: center;
+}
+
+.writeBtn {
+    font-size: large;
+    padding: 5px 10px;
+    margin-top: 20px;
+    width: 50%;
+}
+
+p {display: inline-block;}
+
+#wTitle {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: x-large;
+    border-bottom: 1px solid mediumaquamarine;
+    text-align: center;
+}
+
+textarea {resize: none; width: 100%; height: 200px; border: 1px solid mediumaquamarine;
+    font-size: large;
+}
+
+.container { align-items: center}

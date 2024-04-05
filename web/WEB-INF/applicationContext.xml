@@ -17,9 +17,17 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:/mappers/*.xml" />
+        <property name="mapperLocations" value="classpath*:/mappers/*.xml" />
         <property name="typeAliasesPackage" value="com.koreait.whattodo" />
     </bean>
 
     <mybatis-spring:scan base-package="com.koreait.whattodo" />
+
+    <!-- fileUpload -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="52428800"/> <!-- 50MB -->
+    </bean>
+
+
+
 </beans>

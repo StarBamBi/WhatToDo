@@ -1,0 +1,14 @@
+.movieContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bookMovie {
+    display: flex;
+    flex-direction: column;
+}
+
+.bookMovie > a {
+    margin: 5px 0px;
+}

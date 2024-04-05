@@ -1,0 +1,29 @@
+i { color: pink; font-size: x-large; font-weight: bold}
+
+#cmt_list { display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px;}
+
+/*tr, th, td {*/
+/*    border: none;*/
+/*    border-bottom: 1px solid darkcyan;*/
+/*}*/
+
+/*tr {*/
+/*    border-bottom: 1px solid darkgray;*/
+/*}*/
+td { padding: 0px 7px}
+
+table { width: 100%; text-align: center}
+
+#cmtTxt {
+    width: 75%;
+    border-color: lightgrey;
+}
+.boardBtn { padding: 5px; color: #444444; font-weight: bolder;}
+
+#likeBtnDv { display: block; justify-content: center}
+
+#dTitle {  text-align: center}
+
+.container { align-items: center}
+
+table { border: none}
