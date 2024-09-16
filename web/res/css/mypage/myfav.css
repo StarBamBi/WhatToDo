@@ -1,0 +1,16 @@
+table, tbody, td, tfoot, th, thead, tr { border: none; text-align: left }
+
+#select_form {
+    width: 30%;
+    text-align: center;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+i {
+    margin: 0 10px;
+}
+
+.fa-heart {
+    color: red;
+}

@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koreait.whattodo.user.UserMapper">
-    <insert id="insUser">
-        INSERT INTO t_user (uid, upw, nm, gender, profileimg)
+    <insert id="insUser"><!--  회원가입  -->
+        INSERT INTO whattodo_user (uid, upw, nm, gender, profileimg)
         VALUES (#{uid}, #{upw}, #{nm}, ${gender}, #{profileimg})
     </insert>
 
-    <select id="selUser" resultType="UserEntity">
-        SELECT * FROM t_user
+    <insert id="insAutoLoginKey"><!--  자동로그인 키 생성  -->
+        INSERT INTO auto_login (auto_key, user_id, expiration_at)
+        VALUES (#{key}, #{uid}, DATE_ADD(NOW(), INTERVAL #{day} DAY))
+    </insert>
+
+    <select id="selUserWithAutoLogin" resultType="UserVo"><!--  자동로그인 키 확인  -->
+        SELECT iuser, uid, upw, nm, gender, profileimg, rdt, mdt
+        FROM whattodo_user
+                 LEFT JOIN auto_login
+                           ON uid = auto_login.user_id
+        WHERE auto_key = #{key}
+          AND expiration_at > NOW()
+          AND expiration_flag = FALSE
+    </select>
+
+    <update id="updLoginKeyRenewal"><!--  자동로그인 키 갱신  -->
+        UPDATE auto_login
+        SET expiration_at = DATE_ADD(NOW(), INTERVAL #{day} DAY)
+        WHERE auto_key = #{key}
+          AND expiration_at > NOW()
+          AND expiration_flag = FALSE
+            LIMIT 1;
+    </update>
+
+    <update id="delAutoLoginKey"><!--  자동로그인 키 만료  -->
+        UPDATE auto_login
+        SET expiration_flag = TRUE, expiration_at = NOW()
+        WHERE auto_key = #{key}
+          AND expiration_at > NOW()
+          AND expiration_flag = FALSE
+    </update>
+
+    <select id="selUser" resultType="UserVo"><!--  로그인  -->
+        SELECT * FROM whattodo_user
         WHERE uid = #{uid}
     </select>
+
+
 </mapper>

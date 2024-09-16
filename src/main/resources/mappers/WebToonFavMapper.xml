@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.board.fav.FavWebtoonMapper">
+    <insert id="insWebtoonFav">
+        INSERT INTO fav_webtoon (nm, iuser)
+        VALUES (#{nm}, ${iuser})
+    </insert>
+
+    <select id="selWebtoondFav" resultType="FavWebtoonEntity">
+        SELECT *
+        FROM fav_webtoon
+        WHERE nm = #{nm}
+          AND iuser = ${iuser}
+    </select>
+
+    <select id="selWebtoonMyFav" resultType="FavWebtoonEntity">
+        SELECT *
+        FROM fav_webtoon
+        WHERE iuser = ${iuser}
+    </select>
+
+    <select id="selWebtoonFavCount" resultType="FavWebtoonEntity">
+        SELECT COUNT(iuser) as 'count'
+        FROM fav_webtoon
+        WHERE nm = #{nm}
+    </select>
+
+    <delete id="delWebtoonFav">
+        DELETE FROM fav_webtoon
+        WHERE nm = #{nm}
+          AND iuser = ${iuser}
+    </delete>
+</mapper>

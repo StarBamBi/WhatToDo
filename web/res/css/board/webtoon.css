@@ -1,0 +1,415 @@
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hahmlet-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Goyang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Goyang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LeferiPoint-BlackA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.modalContent a {
+    color: whitesmoke;
+}
+h1 {
+    text-align: center;
+}
+
+span {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.card-nm {
+    font-family: 'Hahmlet-Bold';
+    font-size: 20px;
+    margin: 5px 0;
+
+}
+
+.card-writer {
+    font-family: 'Goyang';
+}
+
+.webtoonModalElement {
+    cursor: pointer;
+}
+
+.webtoonLink, .webtoonInfoHidden {
+    display: none;
+}
+
+#recommand_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#recommand_box ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /*border-top: 1px solid black;*/
+    /*border-bottom: 1px solid black;*/
+    margin: 10px 0;
+}
+
+#recommand_box ul li {
+    margin: 10px;
+}
+
+#recommand_box .webtoon_recommand_title {
+    font-family: 'SBAggroM', 'sans-serif';
+    font-size: 24px;
+}
+
+.recommend_section {
+    width: 800px;
+}
+
+.recommend_section #card {
+    margin: 10px;
+}
+
+.recommend_section #card img {
+    border-radius: 0;
+}
+
+.recommend_section #card .card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+    font-family: 'Hahmlet-Bold';
+    font-size: 20px;
+}
+
+.recommend_section #card #card-writer {
+    font-family: 'Goyang';
+}
+
+#card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommend_section span {
+    text-align: center;
+    display: block;
+}
+
+.recommend_section .webtoonLink {
+    display: none;
+}
+
+.webtoon_box {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.webtoon_box .result_box {
+    height: 300px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.webtoon_box .result_box img {
+    margin-bottom: 10px;
+}
+
+.webtoon_box .result_box #genre_title {
+    font-family: 'LeferiPoint-BlackA';
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.webtoon_box .webtoon_nm {
+    margin: 5px 0;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.naver_section {
+    flex: 2 1 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.naver_section ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.naver_section ul li {
+    margin: 0 10px;
+}
+
+.naver_section img {
+    border-radius: 4px;
+}
+
+.naver_section #webtoon_databox span {
+    display: block;
+    width: 83px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 10px 0;
+    font-family: 'LeferiPoint-BlackA';
+    font-size: 14px;
+}
+.daily { color: deepskyblue;}
+.comic { color: #03acc2; }
+.fantasy { color: orangered; }
+.action { color: darkblue; }
+.drama { color: darkslategrey; }
+.pure { color: hotpink; }
+.emotional { color: green; }
+.thriller { color: red; }
+.historical { color: dimgrey; }
+.sports { color: blue; }
+.ending { color: black; }
+
+.random-card {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 20px 0;
+}
+
+.random-webtoon-nm {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 10px;
+}
+
+.like_cnt {
+    font-size: 14px;
+}
+/* MODAL CSS */
+
+#modal.modal-overlay {
+    width: 100%;
+    height: 140%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#modal .modal-window {
+    background: rgba( 69, 139, 197, 0.70 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    min-width: 450px;
+    top: -100px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.modalTitle {
+    padding-left: 5px;
+    display: block;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    margin: 10px 0px;
+    font-family: 'Black Han Sans', sans-serif;
+}
+
+#modal .close-area {
+    text-align: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    font-size: larger;
+    position: absolute;
+    right: 20px;
+}
+
+.modalContent {
+    margin: 30px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    text-align: center;
+}
+
+.modalContent #webtoon_databox {
+    margin-top: 10px;
+}
+
+.modalContent li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modalContent span {
+    margin: 10px 0;
+}
+
+.modalContent i:hover {
+    cursor: pointer;
+}
+
+.modalContent .webtoonLink {
+    display: inline-block;
+}
+
+.modalContent a {
+    margin: 10px 0;
+}
+
+.modalContent a:hover {
+    color: lightgreen;
+}
+
+.modalContent img {
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+#reviewFrm {
+    margin-bottom: 20px;
+}
+
+#review_list {
+    display: flex;
+    justify-content: center;
+}
+
+#review_list table, td, th {
+    border: none;
+}
+
+#review_list .modBtn, .delBtn  {
+    margin-left: 5px;
+    border-radius: 30px;
+    border: 0;
+    height: 23px;
+    width: 45px;
+}
+
+#review_list .cancleBtn .saveBtn {
+    margin-left: 5px;
+    border-radius: 30px;
+    border: 0;
+    height: 23px;
+    width: 45px;
+}
+
+.reviewTextInput {
+    border-radius: 30px;
+    height: 30px;
+    border: 0;
+    width: 300px;
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+#btn_submit {
+    margin-left: 5px;
+    border-radius: 30px;
+    border: 0;
+    height: 30px;
+    width: 55px;
+}
+
+#modal .heart_section i {
+    color: red;
+}
+
+.inputStyle {
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+    height: 28px;
+    width: 100%;
+}
+
+.buttonStyle {
+    margin-left: 5px;
+    border-radius: 30px;
+    border: 0;
+    height: 23px;
+    width: 45px;
+}
+
+table {
+    table-layout: fixed;
+    width: 400px;
+}
+
+th:first-child {
+    width: 45%;
+}
+
+th:nth-child(2) {
+    width: 20%;
+}
+
+th:nth-child(3) {
+    width: 35%;
+}
+
+td:first-child {
+    overflow:hidden;
+    white-space : nowrap;
+    text-overflow: ellipsis;
+}
+
+td:nth-child(2) {
+    overflow:hidden;
+    white-space : nowrap;
+    text-overflow: ellipsis;
+}

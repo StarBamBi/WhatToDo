@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.webtoon.WebtoonMapper">
+    <!-- 네이버웹툰 -->
+    <insert id="insertWebtoon">
+        INSERT INTO webtoon(nm, writer, rating, img, weekend, link) VALUES
+        <foreach collection="list" open="(" close=")" separator="),(" item="webtoon">
+            #{webtoon.nm}, #{webtoon.writer}, #{webtoon.rating}, #{webtoon.img}, #{webtoon.weekend}, #{webtoon.link}
+        </foreach>
+    </insert>
+
+    <insert id="insertRecommandWebtoon">
+        INSERT INTO webtoon_recommand(nm, writer, rating, img, weekend, link) VALUES
+        <foreach collection="list" open="(" close=")" separator="),(" item="webtoon">
+            #{webtoon.nm}, #{webtoon.writer}, #{webtoon.rating}, #{webtoon.img}, #{webtoon.weekend}, #{webtoon.link}
+        </foreach>
+    </insert>
+
+    <insert id="insertGenredWebtoon">
+        INSERT INTO webtoon_genre(nm, writer, rating, img, genre, state, link) VALUES
+        <foreach collection="list" open="(" close=")" separator="),(" item="webtoon">
+            #{webtoon.nm}, #{webtoon.writer}, #{webtoon.rating}, #{webtoon.img}, #{webtoon.genre}, #{webtoon.state}, #{webtoon.link}
+        </foreach>
+    </insert>
+
+    <delete id="delWebtoon">
+        DELETE FROM webtoon
+    </delete>
+
+    <delete id="delRecommandWebtoon">
+        DELETE FROM webtoon_recommand
+    </delete>
+
+    <delete id="delGenreWebtoon">
+        DELETE FROM webtoon_genre
+    </delete>
+
+    <select id="webtoonList" resultType="WebtoonEntity">
+        SELECT * FROM webtoon ORDER BY wnum
+    </select>
+
+    <select id="webtoonRecommandList" resultType="WebtoonRecommandEntity">
+        SELECT * FROM webtoon_recommand ORDER BY wrnum
+    </select>
+
+    <select id="webtoonListRandom" resultType="WebtoonEntity">
+        SELECT * FROM webtoon ORDER BY RAND() LIMIT 10
+    </select>
+
+    <select id="webtoonRecommandListRandom" resultType="WebtoonRecommandEntity">
+        SELECT DISTINCT nm, writer, rating, img, weekend, link FROM webtoon_recommand ORDER BY RAND() LIMIT 3
+    </select>
+
+    <select id="webtoonGenreListAll" resultType="WebtoonGenreEntity">
+        SELECT * FROM webtoon_genre
+    </select>
+
+    <select id="webtoonGenreListBtnRandom" resultType="WebtoonGenreEntity">
+        SELECT DISTINCT * FROM webtoon_genre ORDER BY RAND() LIMIT 1
+    </select>
+</mapper>

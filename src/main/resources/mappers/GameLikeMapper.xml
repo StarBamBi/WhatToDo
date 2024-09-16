@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.game.like.GameLikeMapper">
+
+    <insert id="insGameLike">
+        INSERT INTO game_like (gameNm, iuser)
+        VALUES (#{gameNm}, ${iuser})
+    </insert>
+
+    <select id="selGameLike" resultType="GameLikeEntity">
+        SELECT gameNm, iuser, rdt
+        FROM game_like
+        WHERE gameNm = #{gameNm}
+          AND iuser = ${iuser}
+    </select>
+
+    <delete id="delGameLike">
+        DELETE
+        FROM game_like
+        WHERE gameNm = #{gameNm}
+          AND iuser = ${iuser}
+    </delete>
+
+    <select id="gameLikeCount" resultType="GameLikeEntity">
+        SELECT COUNT(*) AS 'count' FROM game_like
+        WHERE gameNm = #{gameNm}
+    </select>
+    
+</mapper>
