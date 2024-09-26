@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.whattodo.review.ReviewMapper">
+    <insert id="insReviewWebtoon" useGeneratedKeys="true" keyProperty="rnum">
+        INSERT INTO review_webtoon (ctnt, nm, iuser, nickname)
+        VALUES (#{ctnt}, #{nm}, ${iuser}, #{nickname})
+    </insert>
+
+    <select id="selReviewWebtoon" resultType="ReviewEntity">
+        SELECT DISTINCT A.*
+        FROM review_webtoon A
+                 LEFT JOIN whattodo_user B
+                           ON A.iuser = B.iuser
+        LEFT JOIN webtoon C ON A.nm = C.nm
+        WHERE A.nm = #{nm}
+        ORDER BY A.rnum
+    </select>
+
+    <select id="selReviewWebtoonMy" resultType="ReviewEntity">
+        SELECT *
+        FROM review_webtoon
+        WHERE iuser = ${iuser}
+        ORDER BY rnum DESC
+    </select>
+
+    <select id="selReviewAllMy" resultType="ReviewEntity">
+        SELECT nm, ctnt, rdt FROM review_webtoon UNION ALL SELECT gameNm AS nm, ctnt, rdt FROM game_cmt ORDER BY rdt desc;
+    </select>
+
+    <select id="selReviewGameMyPaging" resultType="ReviewEntity">
+        SELECT gameNm AS nm, ctnt, rdt
+        FROM game_cmt
+        WHERE iuser = ${iuser}
+        ORDER BY rdt desc LIMIT ${pageStart}, ${perPageNum};
+    </select>
+
+    <select id="selReviewWebtoonMyPaging" resultType="ReviewEntity">
+        SELECT *
+        FROM review_webtoon
+        WHERE iuser = ${iuser}
+        ORDER BY rdt desc LIMIT ${pageStart}, ${perPageNum};
+    </select>
+
+    <select id="selReviewAllMyPaging" resultType="ReviewEntity">
+        SELECT nm, ctnt, rdt FROM review_webtoon UNION ALL SELECT gameNm AS nm, ctnt, rdt FROM game_cmt
+        WHERE iuser=${iuser}
+        ORDER BY rdt desc LIMIT ${pageStart}, ${perPageNum};
+    </select>
+
+    <update id="updReviewWebtoon">
+        UPDATE review_webtoon
+        SET ctnt = #{ctnt}
+        WHERE rnum = ${rnum} AND iuser = ${iuser}
+    </update>
+
+    <delete id="delReviewWebtoon">
+        DELETE FROM review_webtoon
+        WHERE rnum = ${rnum}
+          AND iuser = ${iuser}
+    </delete>
+</mapper>

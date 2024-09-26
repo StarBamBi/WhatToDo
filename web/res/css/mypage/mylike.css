@@ -1,0 +1,155 @@
+table  {
+    border: none;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    text-align: left;
+    border: none;
+}
+
+#select_form {
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+i {
+    margin: 0 10px;
+}
+
+.fa-heart {
+    color: red;
+}
+
+#modal-like.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#modal-like > .modal-window {
+    background: rgba( 69, 139, 197, 0.70 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 550px;
+    height: 700px;
+    position: relative;
+    top: -100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.modalTitle {
+    padding-left: 10px;
+    display: block;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+#close-area {
+    text-align: right;
+    padding-right: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    font-size: larger;
+}
+
+.modalContent {
+    margin-top: 10px;
+    padding: 0px 10px;
+    text-shadow: 1px 1px 2px gray;
+    color: white;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    overflow-y: initial !important
+}
+
+.modalContent a:link {
+    color: whitesmoke;
+}
+
+.modalContent a:hover {
+    color: #b1bfca;
+}
+
+.selected-img {
+    text-align: center;
+    margin: 20px 0px;
+}
+.selected-img > img {
+    width: 400px;
+    height: 300px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    width: 50%;
+    margin: 15px;
+}
+
+.gameCmtList {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.boardBtn {
+    font-size: smaller;
+    border: none;
+    border-radius: 3px;
+    background-color: white;
+    padding: 2px;
+}
+
+.boardBtn:hover {
+    background-color: lightgray;
+}
+
+i {
+    color: lightpink;
+    font-size: larger;
+    margin-top: 10px;
+}
+
+tbody > tr:hover {
+    cursor: pointer;
+}
+
+tbody > td {
+    border: none;
+}
+
+.gameCmtList > table {
+    width: 100%;
+}
+
+.pagination {
+    justify-content: center;
+}

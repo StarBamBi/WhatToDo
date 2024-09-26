@@ -1,40 +1,121 @@
 .container {
-    flex-direction: column;
+    display: block;
+    text-align: center;
+    padding: 50px 0;
+    overflow: auto;
 }
 
-.login_font {
-    height: 5rem;
-    position: center;
+#login-form {
+    margin-top: 50px;
 }
 
-.login_container {
-    position: center;
+.login_form {
+    border: 1px solid #cccccc;
+    padding: 60px;
+    margin: 70px 0;
+}
+
+.login_form > h1:first-child {
+    padding-bottom: 1.5rem;
 }
 
 .login_container > div {
     padding-bottom: 1rem;
 }
 
+
 .login_container > div > input.login_input{
     padding: 1rem 7rem 1rem 1rem;
     font-size: 15px;
-    border: 1px solid black;
+    border-radius: 4px;
+    border: solid 1px #dddddd;
 }
 
 .login_container > div > input:focus {
-    border: 1px solid black;
+    border: solid 1px #dddddd;
+    outline: none;
 }
 
 .login_btn {
     font-size: 15px;
-    border: 1px solid black;
     padding:1rem 8rem;
-    background-color: #03c75a;;
+    border-radius: 4px;
+    background-color: #03c75a;
+    border: solid 1px #03c75a;
     color: white;
     font-weight: bold;
 }
 
 .login_btn:hover {
-    background-color: green;
+    background-color: #008d62;
     color: white;
+}
+
+a:link, a:visited, a:active { color: black; }
+
+a:hover { color: #C0C0C0 }
+
+
+.msg_n {
+    display: none;
+}
+
+.err_msg_b {
+    font-weight: normal;
+    color: red;
+    display: block;
+}
+
+.login_find ul {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.login_find li {
+    margin: 0 10px;
+}
+
+.api_login {
+    margin: 10px 0;
+}
+
+.api_login img {
+    width: 180px;
+    height: 44px;
+}
+
+.api_login ul {
+    padding: 0;
+}
+
+.api_login li {
+    margin: 10px 0;
+}
+
+.api_login img:hover {
+    cursor: pointer;
+}
+
+.api_login_guide {
+    margin-top: 20px;
+    color: #cccccc;
+}
+
+.divider {
+    display: inline-block;
+    width: calc(50% - 30px);
+    height: 1px;
+    background: #cccccc;
+    margin-top: 11px;
+    vertical-align: top;
+}
+
+.guide_api_login {
+    margin: 0 10px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
 }

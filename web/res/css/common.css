@@ -1,8 +1,71 @@
+:root {
+    --gold:#FFDF00;
+    --sliver:#C0C0C0;
+    --bronze:#c49c48;
+    --main-color:#e3f2fd;
+    --main-color-dark:#b1bfca;
+    --main-color-darker:rgb(145 145 146);
+    --menu-radius:10px;
+}
+
+/* -----폰트 ------*/
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SBAggroM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* -----색상------- */
+.gold { color: var(--gold); }
+.sliver { color: var(--sliver); }
+.bronze { color: var(--bronze); }
+.color-red { color: red; }
+
+/* -----display 관련------- */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+/* -----display 관련------- */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+/* ------ img 관련 ------- */
+.circular--img { display: inline-block; overflow: hidden; border-radius: 50%; border: 1px solid #ecf0f1; }
+.wh-100 { width: 100px; height: 100px; }
+.wh-80 { width: 80px; height: 80px; }
+
+/* -----Font 관련----------*/
+.font-14px { font-size: 14px; }
+
 * {
     margin: 0;
+    padding: 0;
     list-style: none;
     text-decoration: none;
+    box-sizing: border-box;
 }
+
+a, a:link, a:visited, a:active, a:hover { color: black; text-decoration: none; }
 
 html,
 body {
@@ -10,52 +73,328 @@ body {
     width: 100%;
 }
 
+table { border-collapse: collapse; }
+
+img { border-radius: 10px; }
+
+/* --- header --- */
+
 .header,
 .footer {
+    font-family: 'Nanum Gothic', sans-serif;
     width: 100%;
     padding: 5vh 0;
     text-align: center;
-    background-color: black;
+    background-color: var(--main-color);
     color: white;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hidden { display: none; }
+
+.header > a { /* 회원가입 부트스크랩때문에 따로 적용함 */
+    text-decoration: none;
+    color: black;
 }
 
-.header .login {
+.header .main_title {
+    color: black;
+    font-family: 'MaplestoryOTFBold';
+    font-size: 40px;
+}
+
+#header-login {
     position: absolute;
-    right: 20px;
     top:10px;
+    right: 0px;
+    padding: 5px 10px;
+}
+
+#header-login li {
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    padding: 0 10px;
+}
+
+.header .login a, .logout a {
+    color:var(--main-color-dark);
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bolder;
+}
+.header .login a:hover {
+    color:var(--main-color-darker);
+    padding: 5px 10px;
+}
+
+.header .login a {
+    color:var(--main-color-dark);
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bolder;
+}
+.header .login a:hover {
+    color:var(--main-color-darker);
 }
 
 .header_menu {
     width: 100%;
-    height: 5vh;
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid black;
+    background-color: var(--main-color-dark);
 }
 
 .header_menu ul {
+    color: whitesmoke;
     padding-left: 0;
     margin: 0;
 }
 
 .header_menu li {
-    font-weight: bold;
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'SBAggroM', 'sans-serif';
+    font-weight: normal;
+    font-size: 22px;
     float: left;
-    margin: 10px 30px;
-    padding: 0 20px;
+    margin: 7px 20px;
+    padding: 0 15px;
+    padding-top: 3px;
 }
 
 .header_menu li:hover {
     cursor: pointer;
-    background-color: black;
+    color: var(--main-color-darker);
+}
+
+.header_menu .menu-selected {
+    border-radius: 20px;
+    color: white;
+    background-color: lightskyblue;
+}
+
+.header_menu .menu-selected:hover {
     color: white;
 }
 
-.container {
+/* --- container --- */
+
+.container_box {
+    font-family: 'Nanum Gothic', sans-serif;
     text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    min-height: 800px;
+}
+
+.container_box .choiceBtn_section {
+    margin-bottom: 0;
+}
+
+.choiceBtn_section_line {
+    margin: 10px 0;
+}
+
+.choiceBtn_section button {
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+}
+
+.choiceBtn_section button:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+
+.choiceBtn_section button:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;
+}
+
+/* 애니메이션 버튼  */
+/* toggle this class */
+
+.color-bg-start {
+    background-color: salmon;
+}
+
+/* toggle class bg-animate-color */
+.bg-animate-color {
+    animation: random-bg .5s linear infinite;
+}
+
+/* add animation to bg color  */
+@keyframes random-bg {
+    from {
+        filter: hue-rotate(0);
+    }
+
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.fun-btn {
+    /* change bg color to get different hues    */
+    background-color: salmon;
+    color: white;
+    padding: 30px 45px;
+    border: none;
+    transition: all .3s ease;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    outline: none;
+    align-self: center;
+    cursor: pointer;
+
+}
+
+.fun-btn:hover {
+    animation: random-bg .5s linear infinite, grow 1300ms ease infinite;
+}
+
+.start-fun {
+    background-color: #fff !important;
+    /* change color of button text when fun is started   */
+    color: salmon !important;
+}
+
+/* pulsating effect on button */
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.3);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.3);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+}
+
+table, td, th { border: 1px solid #4f4f4f; border-collapse: collapse; }
+
+td, th { padding: 7px; }
+
+button.ppBtn.clicked {
+    background-color: dodgerblue;
+}
+
+button.kdBtn.clicked {
+    background-color: lightpink;
+}
+
+button.pfBtn.clicked {
+    background-color: lightgreen;
+}
+
+
+#dtCtnt {
+    font-size: x-large;
+    border: 1px solid mediumaquamarine;
+    padding: 20px;
+    margin: 10px;
+}
+
+.boardBtn {
+    margin: 5px;
+}
+
+#dTitle {
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: 1px solid mediumaquamarine;
+    font-size: x-large;
+}
+
+#wTitle {
+    margin-bottom: 20px;
+    padding-top: 20px;
+    font-size: x-large;
+}
+
+#mdBtns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* --- footer --- */
+
+.footer {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: black;
+    padding: 40px 0;
+    text-align: center;
+    background-color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 1vh;
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+}
+
+#header-color {
+    background-color: rgb(42, 174, 207);
+}
+
+#header-color li:hover {
+    border-radius: 20px;
+    color: white;
+    background-color: lightskyblue;
+}
+
+#guide-tooltip {
+    position: fixed;
+    right: 30px;
+    top: 300px;
+}
+
+#guide-tooltip a {
+    color: black;
+    background: none;
+    border: none;
+}
+
+#guide-tooltip .btn-outline-info {
+    background: white;
+}
+
+.pagination a:hover {
+    color: rgb(42, 174, 207);
+    font-weight: bold;
+    border-bottom: 1px solid rgb(42, 174, 207);
+    padding-bottom: 3px;
+}
+
+.active a {
+    color: rgb(42, 174, 207);
+    font-weight: bold;
+    border-bottom: 1px solid rgb(42, 174, 207);
+    padding-bottom: 3px;
 }
