@@ -3,7 +3,7 @@
 <mapper namespace="com.koreait.whattodo.user.UserMapper">
     <insert id="insUser">
         INSERT INTO t_user (uid, upw, nm, gender, profileimg)
-        VALUES (#{uid}, #{upw}, #{nm}, ${gender}, #{profileimg})
+        VALUES (#{uid}, #{upw}, #{nm}, #{gender}, #{profileimg})
     </insert>
 
     <select id="selUser" resultType="UserEntity">
